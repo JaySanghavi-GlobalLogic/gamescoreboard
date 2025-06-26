@@ -13,6 +13,7 @@ A real-time React-based dashboard for monitoring line throughput, unit performan
 - 🎨 Tailwind CSS styling
 - ✅ Mocked socket data for robust frontend testing
 - 🔴 Live Python Flask Server to transmit the real time data
+- 📄 Swagger Documentation at http://localhost:5000/swagger
 
 ---
 

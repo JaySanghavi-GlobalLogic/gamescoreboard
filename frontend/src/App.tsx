@@ -1,8 +1,21 @@
-import React from 'react'; // optional in React 17+, but safe to include
-import Scoreboard from './components/ScoreTableComponents/Scoreboard';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from './store';
+import Scoreboard from './containers/Scoreboard';
+import { useWebSocket } from './hooks/UseWebSocket';
+
+// ✅ WebSocketInitializer must be inside the Provider
+const WebSocketInitializer = () => {
+  useWebSocket();
+  return null; // This component doesn't render anything
+};
+
 const App = () => {
   return (
-      <Scoreboard/>
+    <Provider store={store}>
+      <WebSocketInitializer />
+      <Scoreboard />
+    </Provider>
   );
 };
 

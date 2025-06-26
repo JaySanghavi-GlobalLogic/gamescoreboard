@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import GraphComponent from './GraphComponent';
-
+// components/ThroughputDashboard.tsx
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store';
+import GraphComponent from '../components/GraphComponent';
 
 interface Props {
   onLineClick: (lineName: string) => void;
-  throughputData: any
 }
-
 
 const getIcon = (sign: 'Up' | 'Down' | 'Star') => {
   if (sign === 'Up') return '🔼';
@@ -14,11 +14,13 @@ const getIcon = (sign: 'Up' | 'Down' | 'Star') => {
   return '⭐';
 };
 
-const ThroughputDashboard: React.FC<Props> = ({ onLineClick, throughputData }) => {
+const ThroughputDashboard: React.FC<Props> = ({ onLineClick }) => {
+  const throughputData = useSelector((state: RootState) => state?.websocket?.throughputData);
+
   return (
     <div className="h-[calc(100vh-100px)] overflow-y-auto p-4" data-testid="throughput-dashboard">
       <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-4">
-        {throughputData?.map((line: any, idx: number) => (
+        {throughputData?.map((line:any, idx:any) => (
           <div
             key={line?.name}
             className="bg-white border rounded-lg shadow-md hover:shadow-xl cursor-pointer"
@@ -30,18 +32,18 @@ const ThroughputDashboard: React.FC<Props> = ({ onLineClick, throughputData }) =
               <span className="text-sm text-red-500" data-testid={`line-people-${idx}`}>👥 {line.people}</span>
             </div>
 
-            <div className="h-32 px-4 overflow-auto bot" data-testid={`line-chart-container-${idx}`}>
+            <div className="h-32 px-4 overflow-auto" data-testid={`line-chart-container-${idx}`}>
               <GraphComponent
                 chartDataLabelsEnable={true}
                 type="bar"
                 width={250}
                 height={150}
                 data={{
-                  labels: line?.hourlyData?.map((d: any) => d.hour),
+                  labels: line?.hourlyData?.map((d:any) => d.hour),
                   datasets: [
                     {
                       label: 'Throughput',
-                      data: line?.hourlyData?.map((d: any) => d.value),
+                      data: line?.hourlyData?.map((d:any) => d.value),
                       backgroundColor: '#34D399',
                       borderRadius: 4,
                     },
@@ -59,15 +61,15 @@ const ThroughputDashboard: React.FC<Props> = ({ onLineClick, throughputData }) =
                       grid: { display: false },
                       beginAtZero: true,
                       suggestedMin: 0,
-                      suggestedMax: Math.max(...line?.hourlyData?.map((item: { value: any; }) => Number(item?.value)) ?? [0]) + 5,
+                      suggestedMax: Math.max(...line?.hourlyData?.map((item:any) => Number(item?.value)) ?? [0]) + 5,
                     },
                   },
                   plugins: {
                     legend: { display: false },
                     tooltip: {
                       callbacks: {
-                        title: (ctx: any) => `Hour: ${ctx[0].label}`,
-                        label: (ctx: any) => `Value: ${ctx.formattedValue}`,
+                        title: (ctx) => `Hour: ${ctx[0].label}`,
+                        label: (ctx) => `Value: ${ctx.formattedValue}`,
                       },
                     },
                     datalabels: {
@@ -86,11 +88,11 @@ const ThroughputDashboard: React.FC<Props> = ({ onLineClick, throughputData }) =
                 }}
               />
             </div>
+
             <div className={`text-white text-center ${line?.color} py-2 rounded-b`} data-testid={`line-footer-${idx}`}>
               <p className="text-xl font-bold" data-testid={`line-total-${idx}`}>{line?.total?.toLocaleString()}</p>
               <p className="text-sm" data-testid={`line-diff-${idx}`}>
-                {line?.diff > 0 ? '+' : '-'}
-                {line?.diff?.toLocaleString()} {line?.unit}
+                {line?.diff > 0 ? '+' : '-'}{line?.diff?.toLocaleString()} {line?.unit}
               </p>
             </div>
           </div>

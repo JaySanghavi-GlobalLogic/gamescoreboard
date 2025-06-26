@@ -1,6 +1,17 @@
 // webpack.config.js
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+const dotenv = require('dotenv');
+
+// Load .env
+const env = dotenv.config().parsed || {};
+
+// Format for DefinePlugin
+const envKeys = Object.keys(env).reduce((acc, key) => {
+  acc[`process.env.${key}`] = JSON.stringify(env[key]);
+  return acc;
+}, {});
 
 module.exports = {
   entry: './src/index.tsx',
@@ -31,6 +42,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'public/index.html',
     }),
+    new webpack.DefinePlugin(envKeys), // 🔑 Add this
   ],
   devServer: {
     static: './dist',
