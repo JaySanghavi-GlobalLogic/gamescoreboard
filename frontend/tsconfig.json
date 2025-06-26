@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "types": ["react", "react-dom", "jest", "node","@testing-library/jest-dom"],
+    "target": "ES6",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["DOM", "ESNext"],
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+  },
+  "include": ["src"]
+}
