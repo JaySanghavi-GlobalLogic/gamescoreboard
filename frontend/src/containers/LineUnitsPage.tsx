@@ -92,7 +92,7 @@ const LineUnitsPage: React.FC<Props> = ({ lineName, onBack, defaultTab = 'Units/
   };
 
   return (
-    <div className="flex h-screen bg-gray-100" data-testid="line-units-page">
+    <div className="flex h-full-screen bg-gray-100" data-testid="line-units-page">
       <aside className="w-40 bg-gray-200 p-4" data-testid="sidebar">
         <h1 className="text-xl font-bold mb-4">Units</h1>
         {unitsData?.navItems?.map((item: string) => (
