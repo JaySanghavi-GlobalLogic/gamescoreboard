@@ -15,7 +15,7 @@ const getIcon = (sign: 'Up' | 'Down' | 'Star') => {
 };
 
 const ThroughputDashboard: React.FC<Props> = ({ onLineClick }) => {
-  const throughputData = useSelector((state: RootState) => state?.websocket?.throughputData);
+  const throughputData = useSelector((state: RootState) => state?.websocketThroughput?.throughputData);
 
   return (
     <div className="h-[calc(100vh-100px)] overflow-y-auto p-4" data-testid="throughput-dashboard">

@@ -6,7 +6,8 @@ import { useWebSocket } from './hooks/UseWebSocket';
 
 // ✅ WebSocketInitializer must be inside the Provider
 const WebSocketInitializer = () => {
-  useWebSocket();
+  useWebSocket(); //Initialize all Reducers
+  
   return null; // This component doesn't render anything
 };
 

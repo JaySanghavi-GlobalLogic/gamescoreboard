@@ -6,9 +6,17 @@ import Scoreboard from '../../containers/Scoreboard';
 
 import {
   setScoreboardData,
+} from '../../store/slices/WebSocketScoreboardSlice'; // Adjust import path as needed
+
+import {
   setThroughputData,
+} from '../../store/slices/WebSocketThroughputSlice'; // Adjust import path as needed
+
+
+import {
   setUnitsData,
-} from '../../store/slices/WebSocketSlice'; // Adjust import path as needed
+} from '../../store/slices/WebSocketLineUnitsPageSlice'; // Adjust import path as needed
+
 
 describe('Scoreboard Component', () => {
   beforeEach(() => {

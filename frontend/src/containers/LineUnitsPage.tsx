@@ -28,7 +28,7 @@ const LineUnitsPage: React.FC<Props> = ({ lineName, onBack, defaultTab = 'Units/
   const [selectedTab, setSelectedTab] = useState(defaultTab);
   const { formattedDate, currentTime } = getDateTime();
 
-  const unitsData = useSelector((state: RootState) => state?.websocket?.unitsData);
+  const unitsData = useSelector((state: RootState) => state?.websocketLineUnitsPage?.unitsData);
 
   const data: ChartData<'bar' | 'line'> = {
     labels: unitsData?.unitsManHourData?.map((item: any) => item.time),

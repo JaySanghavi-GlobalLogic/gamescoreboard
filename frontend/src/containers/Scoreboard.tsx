@@ -19,9 +19,7 @@ const Scoreboard = ({ defaultTab = 'Score' }) => {
   const [lineName, setLineName] = useState('');
   const { formattedDate, currentTime } = getDateTime();
 
-  const {
-    scoreboardData,
-  } = useSelector((state: RootState) => state?.websocket);
+  const scoreboardData = useSelector((state: RootState) => state?.websocketScoreboard?.scoreboardData);
 
   const handleLineClick = (line: string) => setLineName(line);
 

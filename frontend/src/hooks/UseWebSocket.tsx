@@ -3,11 +3,15 @@ import { io } from 'socket.io-client';
 import { useDispatch } from 'react-redux';
 import {
   setScoreboardData,
+} from '../store/slices/WebSocketScoreboardSlice';
+import {
   setThroughputData,
+} from '../store/slices/WebSocketThroughputSlice';
+import {
   setUnitsData,
-} from '../store/slices/WebSocketSlice';
+} from '../store/slices/WebSocketLineUnitsPageSlice';
 
-const SOCKET_URL = process.env.REACT_APP_SOCKET_URL || 'http://localhost:5000';
+const SOCKET_URL = process.env.REACT_APP_SOCKET_URL;
 
 export const useWebSocket = () => {
   const dispatch = useDispatch();

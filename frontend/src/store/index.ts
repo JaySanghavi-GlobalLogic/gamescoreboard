@@ -1,10 +1,14 @@
 // store/index.ts
 import { configureStore } from '@reduxjs/toolkit';
-import websocketReducer from './slices/WebSocketSlice';
+import websocketScoreboardSlice from './slices/WebSocketScoreboardSlice';
+import websocketLineUnitsPageSlice from './slices/WebSocketLineUnitsPageSlice';
+import websocketThroughputSlice from './slices/WebSocketThroughputSlice';
 
 export const store = configureStore({
   reducer: {
-    websocket: websocketReducer,
+    websocketScoreboard: websocketScoreboardSlice,
+    websocketLineUnitsPage: websocketLineUnitsPageSlice,
+    websocketThroughput: websocketThroughputSlice,
   },
 });
 

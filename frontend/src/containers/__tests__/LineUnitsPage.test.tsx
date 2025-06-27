@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import LineUnitsPage from '../../containers/LineUnitsPage';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import websocketReducer from '../../store/slices/WebSocketSlice';
+import websocketLineUnitsPageSlice from '../../store/slices/WebSocketLineUnitsPageSlice';
 
 const mockUnitsData = {
   unitsManHourData: [
@@ -26,10 +26,10 @@ const mockUnitsData = {
 const renderWithRedux = (component: React.ReactElement) => {
   const store = configureStore({
     reducer: {
-      websocket: websocketReducer,
+      websocketLineUnitsPage: websocketLineUnitsPageSlice,
     },
     preloadedState: {
-      websocket: {
+      websocketLineUnitsPage: {
         scoreboardData: [],
         unitsData: mockUnitsData,
         throughputData: [],

@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import ThroughputDashboard from '../../containers/ThroughputDashboard';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
-import websocketReducer from '../../store/slices/WebSocketSlice';
+import websocketThroughputSlice from '../../store/slices/WebSocketThroughputSlice';
 
 jest.mock('../../components/GraphComponent', () => {
   return () => <div data-testid="mock-graph-component" />;
@@ -28,10 +28,10 @@ const mockData = [
 const renderWithRedux = (component: React.ReactElement) => {
   const store = configureStore({
     reducer: {
-      websocket: websocketReducer,
+      websocketThroughput: websocketThroughputSlice,
     },
     preloadedState: {
-      websocket: {
+      websocketThroughput: {
         scoreboardData: [],
         throughputData: mockData,
         unitsData: [],
@@ -63,10 +63,10 @@ describe('ThroughputDashboard (Redux version)', () => {
   it('handles empty hourlyData safely', () => {
     const store = configureStore({
       reducer: {
-        websocket: websocketReducer,
+        websocketThroughput: websocketThroughputSlice,
       },
       preloadedState: {
-        websocket: {
+        websocketThroughput: {
           scoreboardData: [],
           throughputData: [{
             name: 'Line X',
